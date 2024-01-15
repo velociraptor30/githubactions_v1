@@ -15,3 +15,12 @@ jobs:
         run: echo "::warning title=warning title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing semicolon"
       - name: ~Setting errnoticeor message with parameters
         run: echo "::errnoticeor title=errnoticeor title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing semicolon"
+      - name: Group of logs
+        run: |
+          echo "::group:: ECHOING TITLE OF GROUP HERE IS TITLE"
+          echo "WHATEVER IS HERE< IT WILL BE DISPLAYED IN THE HROUP< IN THE MIDDLE"
+          echo "::endgroup::"
+      - name: MAsking a value
+        run: "::add-mask::SECRET STRING"
+      - name: echo secret string
+        run: echo "SECRET STRING"
