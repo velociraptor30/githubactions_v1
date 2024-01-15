@@ -11,3 +11,16 @@ jobs:
       run: |
         node -v
         npm -v
+  parralel-job-macos:
+    runs-on: macos
+    steps: 
+      - name: View SW Version
+        run: sw_vers
+  dependent-job:
+    runs-on: ubuntu
+    needs: [parralel-job-macos, run-shell-commands]
+    steps:
+      - name: something
+        run: cat ~/home/
+      - name: error
+        run: error causing
