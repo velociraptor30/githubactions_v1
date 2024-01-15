@@ -21,6 +21,6 @@ jobs:
           echo "WHATEVER IS HERE< IT WILL BE DISPLAYED IN THE HROUP< IN THE MIDDLE"
           echo "::endgroup::"
       - name: MAsking a value
-        run: "::add-mask::SECRET STRING"
+        run: echo "::add-mask::SECRET STRING"
       - name: echo secret string
         run: echo "SECRET STRING"
