@@ -34,5 +34,5 @@ jobs:
       - name: Python shell
         shell: python
         run: |
-          import paltform
+          import platform
           print(baro)
