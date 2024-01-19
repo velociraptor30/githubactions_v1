@@ -9,8 +9,8 @@ on:
         default: "Default value"
       number:
         description: A number input
+        type: number
         default: 4
-
       option:
         description: "An options input"
         required: true
@@ -30,3 +30,7 @@ jobs:
     steps:
         - name: echo
           run: echo $GITHUB_REF
+        - run: |
+            echo "String ${{inputs.string}}"
+            echo "OPtion ${{inputs.option}}"
+
