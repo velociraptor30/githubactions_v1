@@ -23,7 +23,6 @@ on:
       environment:
         description: "blatnoi"
         type: environment
-        required: true
 jobs:
   echogithub_ref:
     runs-on: ubuntu-latest
