@@ -1,0 +1,9 @@
+name: External Events
+on: 
+  repository_dispatch:
+#IT HAS TO LEAVE IN YOUR DEFAULT BRANCH, on other branch it wont run. SO, main branch
+jobs:
+    echo-a-string:
+        runs-on: ubuntu-latest
+        steps:
+          - run: echo "Repository Dispatch"
