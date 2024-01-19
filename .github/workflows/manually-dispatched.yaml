@@ -1,0 +1,32 @@
+name: Manual Dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      string:
+        description: Astring input
+        type: string
+        required: true
+        default: "Default value"
+      number:
+        description: A number input
+        default: 4
+
+      option:
+        description: "An options input"
+        required: true
+        default: "Option 3"
+        type: choice
+        options:
+          - Option 1
+          - Option 2
+          - Option 3
+      environment:
+        description: "blatnoi"
+        type: environment
+        required: true
+jobs:
+  echogithub_ref:
+    runs-on: ubuntu-latest
+    steps:
+        - name: echo
+          run: echo $GITHUB_REF
