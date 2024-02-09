@@ -40,7 +40,7 @@ jobs:
                 DELIMITER=123123
                 echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
                 curl -s https://icanhazdadjoke.com/ >> "GITHUB_ENV"
-                echo "" >> "$GITHUB_ENV"  #new line needed, else delimiter will be part of the string itself
+                echo "" >> "$GITHUB_ENV"
                 echo "$DELIMITER" >> "$GITHUB_ENV"
             - name:  Joke is
               run: echo $RANDOM_JOKE
