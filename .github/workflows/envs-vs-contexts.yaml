@@ -53,5 +53,7 @@ jobs:
                 curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
                 echo "" >> "$GITHUB_ENV"
                 echo "$DELIMITER" >> "$GITHUB_ENV"
+            - name:  Joke 
+              run: echo $RANDOM_JOKE
 
 
