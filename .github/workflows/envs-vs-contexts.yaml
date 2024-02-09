@@ -37,10 +37,10 @@ jobs:
         steps:
             - name: Set Env Var
               run: |
-                DELIMITER=123123
+                DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
                 echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
-                echo "HEre is a joke " >> "$GITHUB_ENV"
-                curl -s https://icanhazdadjoke.com/ >> "GITHUB_ENV"
+                echo "Here is a joke: " >> "$GITHUB_ENV"
+                curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
                 echo "" >> "$GITHUB_ENV"
                 echo "$DELIMITER" >> "$GITHUB_ENV"
             - name:  Joke is
