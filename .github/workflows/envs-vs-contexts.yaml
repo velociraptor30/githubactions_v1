@@ -31,6 +31,7 @@ jobs:
     #            echo "NEW_ENV_VAR=$(date)" >> "GITHUB_ENV" >> "$GITHUB_ENV"  #any subsiquent step will be able to access this, it is saved in file on machine
 #######################################################################
 # GITHUB_ENV     FIle, where variables are set. It is unique for each step,
+
     add_multiline_to_GITHUB_VAR_file:
         runs-on: ubuntu-latest
         steps:
