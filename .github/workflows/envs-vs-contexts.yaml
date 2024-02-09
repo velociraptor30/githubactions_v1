@@ -1,0 +1,46 @@
+name: Environment Variables
+on: [push]
+env: 
+    WF_LEVEL_ENV: Available to all the jobs, because it is used on workflow level
+jobs:
+    env-vars-and-context:
+        runs-on: ubuntu-latest
+        #if: $GITHUB_REF == 'refs/heads/main'  
+        if: github.ref == 'refs/heads/main' #before run this is processed, then know which job to run
+        env:
+            JOB_LEVEL_ENV: Available to all steps, because defined on job level
+        steps:
+            - name: Log ENV VAR
+              run: echo $GITHUB_REF  # in case of var, it is sent to machine and executed, but context is defined before run and then just echoing string.
+            - name: Log COntext
+              run: echo '${{github.ref}}'
+            - name: log customa
+              env: 
+                STEP_LEVEL_ENV: available_only_on_step
+                WF_LEVEL_ENV: override on step
+              run: |
+                echo '${{env.STEP_LEVEL_ENV}}'   # This can be used in if, because it is evaluated before workflow run
+                echo '$STEP_LEVEL_ENV'  #CAN NOT USE IN IF STATEMENT
+               
+
+    add_evn_var_to_GITHUB_VAR_file:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Set Env Var
+              run: |
+                echo "NEW_ENV_VAR=$(date)" >> "GITHUB_ENV" >> "$GITHUB_ENV"  #any subsiquent step will be able to access this, it is saved in file on machine
+#######################################################################
+# GITHUB_ENV     FIle, where variables are set. It is unique for each step,
+    add_multiline_to_GITHUB_VAR_file:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Set Env Var
+              run: |
+                DELIMITER=123123
+                echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
+                curl -s https://icanhazdadjoke.com/ >> "GITHUB_ENV"
+                echo "" >> "$GITHUB_ENV"  #new line needed, else delimiter will be part of the string itself
+                echo "$DELIMITER" >> "$GITHUB_ENV"
+            - name:  Joke is
+              run: echo $RANDOM_JOKE
+
