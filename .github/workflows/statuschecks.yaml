@@ -8,10 +8,11 @@ jobs:
     steps:
       - name: Step 1
         run: sleep 20
-      - name: Fail
+      - name: Step 2
+        id: step-2
         run: exit 1
       - name: Runs on failure
-        if: failure()
+        if: failure() && steps.step-2.conclusion == 'failure'  # by default, github takes success() && and smth, so we need to fail at firs, or it will success anyways
         run: echo 'Run only on failure'
       - name: Runs if Cancelled
         if: cancelled()
